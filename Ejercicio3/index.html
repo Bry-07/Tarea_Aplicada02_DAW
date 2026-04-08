@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Conversión de Longitud</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script>alert("Tarea aplicada– DAW");</script>
+<h1>Conversión de Longitud</h1>
+
+<div class="tarjeta">
+
+<h3>Convertidor de unidades</h3>
+
+<div class="grupo">
+<label>Valor</label>
+<input type="number" id="valor">
+</div>
+
+<div class="grupo">
+<label>De</label>
+<select id="origen">
+<option value="mm">Milímetros</option>
+<option value="cm">Centímetros</option>
+<option value="m">Metros</option>
+<option value="km">Kilómetros</option>
+<option value="in">Pulgadas</option>
+</select>
+</div>
+
+<div class="grupo">
+<label>A</label>
+<select id="destino">
+<option value="mm">Milímetros</option>
+<option value="cm">Centímetros</option>
+<option value="m">Metros</option>
+<option value="km">Kilómetros</option>
+<option value="in">Pulgadas</option>
+</select>
+</div>
+
+<button onclick="convertir()">Convertir</button>
+
+<div class="resultado" id="resultado">
+Resultado aparecerá aquí
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
