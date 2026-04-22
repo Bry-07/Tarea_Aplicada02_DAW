@@ -1,62 +1,147 @@
-document.addEventListener('DOMContentLoaded', function () { // Cuando el html esté listo, ejecuta esta función, parecido al window.onload pero más específico para el HTML
-    const songsByPage = { // objeto que almacena las canciones por página y que funciona como una tabla de datos en memoria, la clave es 'cumbias.html' y el valor es un array de canciones entonces se guía por el array para mostrarlas en el html
-        'cumbias.html': ['Cómo te voy a olvidar','Nunca es suficiente', 'La cumbia sampuesana', 'Fiesta Cumbianera', 'Sombrero Azul'],
-        'folclore.html': ['El carbonero','Las Cortadoras','Adentro Cojutepeque','Mi Tierra Querida','El Torito Pinto'],
-        'rock-ingles.html': ['I Don\'t Want To Miss A Thing','Nothing Else Matters','Can\'t Stop','November Rain','Under The Bridge'],
-        'rock-espanol.html': ['Rayando el Sol','Entre dos Tierras','De música Ligera','Desde mi Cielo','Amargo Adiós'],
-        'romanticas.html': ['Bachata en Fukuoka','Amar y Querer','Simplemente Amigos','Amor Eterno','María es mi amor'],
-        'instrumentales.html': ['Cat by the Fireplace','Canon in D','Für Elise','River Flows in You','The Pink Panther Theme']
-    };
+// ================================================
+// ROCKOLA - Ejercicio 02
+// canciones.js  -  DOM y Expresiones Regulares
+// ================================================
 
-    // obtener nombre de archivo actual
-    const parts = location.pathname.split('/'); // Splitea el path de la página actual, el path es la dirección de la página, por ejemplo '/home/usuario/Documentos/html/index.html' y sirve para identificar la página que se está cargando
-    const file = parts[parts.length - 1] || parts[parts.length - 2]; // esto obtiene el último elemento del array que es el nombre del archivo, si el último es vacío (por ejemplo si la URL termina con '/') entonces toma el penúltimo,
-    // esto es para manejar casos donde la URL puede terminar con '/' o no y con eso sabe en qué página estamos de forma muy específica ya que luego
 
-    const list = songsByPage[file]; // Utilizamos esto, y lo anterior obtiene el nombre del archivo exacto para obtener la lista de canciones correspondiente a esa página, por ejemplo si estamos en 'cumbias.html' entonces list será el 
-    // array de canciones de cumbias, si no encuentra el archivo en el objeto entonces list será undefined
+// -----------------------------------------------
+// 1. LISTA DE 20 CANCIONES
+//    - Agrega la ruta de tu imagen en "imagen"
+//    - Agrega la ruta de tu audio en "audio"
+// -----------------------------------------------
+var canciones = [
+    // --- CUMBIA ---
+    { titulo: "Cómo Te Voy a Olvidar",   artista: "Los Ángeles Azules",    genero: "Cumbia",      imagen: "img/LAA-como-te-voy-a-olvidar-portada.webp",          audio: "audio/Los Ángeles Azules - Como Te Voy A Olvidar (Letra).mp3" },
+    { titulo: "Nunca Es Suficiente",      artista: "Los Ángeles Azules",    genero: "Cumbia",      imagen: "img/ab67616d0000b273ee781f78d61281d76e98e900.jpg",          audio: "audio/Los Ángeles Azules - Nunca Es Suficiente ft. Natalia Lafourcade (letra).mp3" },
+    { titulo: "La Cumbia Sampuesana",     artista: "Carlos Vives",          genero: "Cumbia",      imagen: "img/a4234884308_10.jpg",          audio: "audio/Cumbia Sampuesana.mp3" },
 
-    /*
-    Básicamente, con esas tres lineas obtenemos el nombre del archivo conforme a la ruta, luego con ese nombre obtenemos la lista de canciones correspondiente 
-    a esa página, y luego con esa lista podemos mostrar las canciones en el HTML, agregándolos al contenedor adecuado en el HTML.
-    */
+    // --- FOLCLORE ---
+    { titulo: "El Torito Pinto",          artista: "Folklore Salvadoreño",  genero: "Folclore",    imagen: "img/folklor.jpeg",        audio: "audio/Folclor de El Salvador - El Torito Pinto.mp3" },
+    { titulo: "El Carbonero",             artista: "Folklore Salvadoreño",  genero: "Folclore",    imagen: "img/Festival_para_el_Buen_Vivir_y_Gobernando_con_la_Gente_-San_Miguel._(24558149730).jpg",        audio: "audio/El Carbonero.mp3" },
+    { titulo: "Adentro Cojutepeque",      artista: "Folklore Salvadoreño",  genero: "Folclore",    imagen: "img/COopJBnWUAAaa_z.jpg",        audio: "audio/Adentro  Cojutepeque.mp3" },
 
-    const container = document.getElementById('songContainer'); // Obtenemos el contenedor conforme a la ID
-    if (!container || !list) return; // Si está vacío o no existe, no hace nada
+    // --- ROCK INGLÉS ---
+    { titulo: "Chop Suey!",               artista: "System of a Down",      genero: "Rock Inglés", imagen: "img/sys.webp",      audio: "audio/system of a down  chop suey!  sub. español.mp3" },
+    { titulo: "Nothing Else Matters",     artista: "Metallica",             genero: "Rock Inglés", imagen: "img/nothing.jpg",      audio: "audio/Metallica- Nothing else matters (sub. españolinglés).mp3" },
+    { titulo: "Under the Bridge",         artista: "Red Hot Chili Peppers", genero: "Rock Inglés", imagen: "img/under.jpg",      audio: "audio/Red Hot Chili Peppers - Under The Bridge (Lyrics).mp3" },
+    { titulo: "November Rain",            artista: "Guns N' Roses",         genero: "Rock Inglés", imagen: "img/noven.jpg",      audio: "audio/Guns N' Roses - November Rain.mp3" },
 
-    function render() { // En cambio si existe, renderiza las canciones en el HTML
-        container.innerHTML = list.map((s, i) => // Para cada canción en la lista
-            `<div class="song-item"><span class="song-number">${i+1}.</span> <span class="song-label">${s}</span></div>` // 
-        ).join(''); // map() recorre el arreglo para cada canción, s = nombre de la canción, i = posición y genera html incrustando
-        // el nombre de la canción en el html como un div con clase 'song-item' y el número de la canción como el número de la canción
-        // que suma 1 a cada elemento del array, y luego separa cada canción con un salto de línea
-        // al final, .join('') junta todos los elementos del array en un solo string
+    // --- ROCK ESPAÑOL ---
+    { titulo: "Desde Mi Cielo",           artista: "Mägo de Oz",            genero: "Rock Español",imagen: "img/cielo.jpg",    audio: "audio/Desde mi cielo.mp3" },
+    { titulo: "De Música Ligera",         artista: "Soda Stereo",           genero: "Rock Español",imagen: "img/music.jpg",    audio: "audio/Soda Stereo - De Música Ligera (Lyrics).mp3" },
+    { titulo: "Rayando el Sol",           artista: "Maná",                  genero: "Rock Español",imagen: "img/sol.jpg",    audio: "audio/Maná  Rayando el Sol [Letra].mp3" },
+
+    // --- ROMÁNTICAS ---
+    { titulo: "Mary es mi Amor",         artista: "Leo Dan",               genero: "Romántica",   imagen: "img/mary.jpg",         audio: "audio/Leo Dan - Mary es mi amor (Letra).mp3" },
+    { titulo: "Amor Eterno",              artista: "Rocío Dúrcal",          genero: "Romántica",   imagen: "img/love.jpg",         audio: "audio/Rocío Dúrcal  Amor Eterno [Letra].mp3" },
+    { titulo: "Amar y Querer",            artista: "José José",             genero: "Romántica",   imagen: "img/amar.jpg",         audio: "audio/AMAR Y QUERER - José José (LETRA).mp3" },
+    { titulo: "Simplemente Amigos",       artista: "Ana Gabriel",   genero: "Romántica",   imagen: "img/amigos.jpg",         audio: "audio/Ana Gabriel  Simplemente Amigos [Letra].mp3" },
+
+    // --- INSTRUMENTALES ---
+    { titulo: "Cat by the Fireplace",     artista: "Música Ambiental",      genero: "Instrumental",imagen: "img/instrumentales.jpg",  audio: "audio/Cat by the Fireplace.mp3" },
+    { titulo: "Für Elise",               artista: "Ludwig van Beethoven",   genero: "Instrumental",imagen: "img/beto.jpg",  audio: "audio/Beethoven - Für Elise.mp3" },
+    { titulo: "Canon in D",              artista: "Johann Pachelbel",       genero: "Instrumental",imagen: "img/ca.webp",  audio: "audio/Canon in D - Pachelbel.mp3" },
+];
+
+
+// -----------------------------------------------
+// 2. REFERENCIAS AL DOM
+// -----------------------------------------------
+var inputBuscar    = document.getElementById('inputBuscar');
+var listaCanciones = document.getElementById('listaCanciones');
+var mensajeInicial = document.getElementById('mensajeInicial');
+var infoCancion    = document.getElementById('infoCancion');
+var imgCancion     = document.getElementById('imgCancion');
+var audioCancion   = document.getElementById('audioCancion');
+var tituloCancion  = document.getElementById('tituloCancion');
+var artistaCancion = document.getElementById('artistaCancion');
+var generoCancion  = document.getElementById('generoCancion');
+
+
+// -----------------------------------------------
+// 3. MOSTRAR TODAS LAS CANCIONES AL CARGAR
+// -----------------------------------------------
+function mostrarCanciones() {
+    listaCanciones.innerHTML = ''; // Limpia la lista
+
+    for (var i = 0; i < canciones.length; i++) {
+        var cancion = canciones[i];
+
+        // Crear el elemento div para la canción
+        var item = document.createElement('div');
+        item.className = 'item-cancion';
+        item.setAttribute('data-index', i); // guarda la posición del arreglo
+
+        item.innerHTML =
+            '<div class="nombre-cancion">' + (i + 1) + '. ' + cancion.titulo + '</div>' +
+            '<div class="info-extra">' + cancion.artista + ' · ' + cancion.genero + '</div>';
+
+        // Al hacer clic, seleccionar la canción
+        item.addEventListener('click', function () {
+            seleccionarCancion(this);
+        });
+
+        listaCanciones.appendChild(item);
+    }
+}
+
+
+// -----------------------------------------------
+// 4. SELECCIONAR CANCIÓN → MOSTRAR IMAGEN Y AUDIO
+// -----------------------------------------------
+function seleccionarCancion(itemClickeado) {
+    // Quitar la clase "seleccionado" del anterior
+    var todos = document.querySelectorAll('.item-cancion');
+    for (var i = 0; i < todos.length; i++) {
+        todos[i].classList.remove('seleccionado');
     }
 
-    // render inicial
-    render(); // llamada a la función render para mostrar las canciones al cargar la página
+    // Marcar el item clickeado
+    itemClickeado.classList.add('seleccionado');
 
-    // actualizar título h2 si existe
-    const h2 = document.querySelector('h2'); // Obtenemos el elemento h2 de la página y se actualiza ya que busca el primer h2 en la página
-    if (h2) h2.textContent = file.replace('.html','').replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    // Obtener los datos de la canción usando el índice guardado
+    var index   = itemClickeado.getAttribute('data-index');
+    var cancion = canciones[index];
 
-    /*
-    Básicamente el if se encarga de limpiar el documento en el que nos encontramos, por ejemplo el documento "rock-ingles.html" se convierte en "Rock Ingles" 
-    y lo muestra como título, esto es para que el título sea dinámico y se adapte a cada página sin necesidad de escribirlo manualmente en cada HTML, 
-    sino que se genera automáticamente a partir del nombre del archivo.
-    */
+    // Actualizar el panel derecho
+    imgCancion.src     = cancion.imagen;
+    imgCancion.alt     = cancion.genero;
+    audioCancion.src   = cancion.audio;
+    tituloCancion.textContent  = cancion.titulo;
+    artistaCancion.textContent = '' + cancion.artista;
+    generoCancion.textContent  = '' + cancion.genero;
 
-    // manejar botón de agregar canción (si existe en la página)
-    const btn = document.getElementById('btnAgregarSong'); // Obtenemos el botón de agregar canción por su ID, si no existe, no hace nada, pero si existe, 
-    // le agregamos un evento click para que al hacer clic en el botón se ejecute la función que agrega una nueva canción a la lista
+    // Mostrar el panel (estaba oculto)
+    mensajeInicial.style.display = 'none';
+    infoCancion.style.display    = 'block';
+}
 
-    if (btn) {  // Si existe ejecuta el código, sino, no hace nada, funciona para que no se rompa en todas las páginas si es que en alguna no existe
-        btn.addEventListener('click', function () { // Agregamos el evento click al botón
-            const nueva = prompt('Ingrese el nombre de la nueva canción:'); // Muestra un prompt para que ingrese el nombre de la canción
-            if (nueva && nueva.trim()) { // Si el nombre no está vacío y no es solo espacios, entonces agrega la canción a la lista, trim() elimina los espacios al inicio y al final del string
-                list.push(nueva.trim()); // Agrega la canción a la lista en el html (push es como empujar o agregar algo a un array)
-                render(); // Renderiza la lista de canciones en el html
-            }
-        });
+
+// -----------------------------------------------
+// 5. FILTRAR CON EXPRESIÓN REGULAR AL ESCRIBIR
+// -----------------------------------------------
+inputBuscar.addEventListener('input', function () {
+    var busqueda = this.value; // Texto que escribe el usuario
+
+    // Crear la expresión regular con el texto escrito
+    // 'i' = ignora mayúsculas/minúsculas
+    var regex = new RegExp(busqueda, 'i');
+
+    // Recorrer todos los items y mostrar/ocultar según coincidencia
+    var items = document.querySelectorAll('.item-cancion');
+    for (var i = 0; i < items.length; i++) {
+        var nombreCancion = canciones[i].titulo;
+
+        if (regex.test(nombreCancion)) {
+            items[i].classList.remove('oculto'); // La muestra
+        } else {
+            items[i].classList.add('oculto');    // La oculta
+        }
     }
 });
+
+
+// -----------------------------------------------
+// 6. INICIAR: mostrar canciones al cargar la página
+// -----------------------------------------------
+mostrarCanciones();

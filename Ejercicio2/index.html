@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rockola - Ejercicio 02</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- Video de fondo -->
+    <video id="videoFondo" autoplay muted loop playsinline>
+        <source src="video/lv_0_20260225005426.mp4" type="video/mp4">
+    </video>
+
+    <h1>ROCKOLA</h1>
+    
+
+    <!-- BUSCADOR -->
+    <input type="text" id="inputBuscar" placeholder="Buscar canción...">
+
+    <!-- LAYOUT: lista e imagen -->
+    <div id="contenedor">
+
+        <!-- LISTA DE CANCIONES -->
+        <div id="listaCanciones">
+            <!-- canciones.js las agrega aquí -->
+        </div>
+
+        <!-- IMAGEN Y DETALLE DE LA CANCIÓN SELECCIONADA -->
+        <div id="detalle">
+            <p id="mensajeInicial">Selecciona una canción para ver su imagen</p>
+
+            <!-- Esta sección está oculta hasta que el usuario seleccione una canción -->
+            <div id="infoCancion" style="display: none;">
+                <img id="imgCancion" src="" alt="Imagen del género">
+                <!-- ESPACIO PARA AUDIO: agrega el src del audio de cada canción en canciones.js -->
+                <audio id="audioCancion" controls src=""></audio>
+                <h2 id="tituloCancion"></h2>
+                <p id="artistaCancion"></p>
+                <p id="generoCancion"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/canciones.js"></script>
+
+</body>
+</html>
