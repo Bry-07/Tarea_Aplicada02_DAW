@@ -16,17 +16,23 @@
 
     <div class="contenedor-principal">
         <!-- Película 1 -->
+        <!-- botón que llama a la función cerrarVentana 
+        con el id de la ventana correspondiente para cerrarla 
+        -->
         <div class="ventana-pelicula" id="ventana1">
             <div class="barra-titulo" id="titulo1">
-                <span>🎭 La Aventura Espacial</span>
+                <span>Si tuviera 30</span>
                 <button class="btn-cerrar" onclick="cerrarVentana('ventana1')">✕</button>
             </div>
             <div class="contenido-pelicula">
-                <img src="img/pelicula1.jpg" alt="La Aventura Espacial" class="img-pelicula">
-                <h3>La Aventura Espacial</h3>
-                <p><strong>Duración:</strong> 2h 15min</p>
+                <img src="img/pelicula1.jpg" alt="Si tuviera 30" class="img-pelicula">
+                <h3>Si tuviera 30</h3>
+                <p><strong>Duración:</strong> 1h 27min</p>
                 <p><strong>Clasificación:</strong> PG-13</p>
-                <p>Una épica aventura intergaláctica llena de acción y misterio.</p>
+                <p>
+                    Si tuviera 30 es una comedia romántica de 2004 sobre una adolescente que despierta con 30 años y
+                    aprende sobre la vida y la madurez.
+                </p>
                 <div class="horarios">
                     <p><strong>Horarios disponibles:</strong></p>
                     <select id="horario1" class="select-horario">
@@ -36,22 +42,25 @@
                         <option>10:30 PM</option>
                     </select>
                 </div>
-                <button class="btn-comprar" onclick="abrirCompra('La Aventura Espacial')">Comprar Entrada</button>
+                <button class="btn-comprar" onclick="abrirCompra('Si Tuviera 30')">Comprar Entrada</button>
             </div>
         </div>
 
         <!-- Película 2 -->
         <div class="ventana-pelicula" id="ventana2">
             <div class="barra-titulo" id="titulo2">
-                <span>💕 Amor Bajo las Estrellas</span>
+                <span>10 Cosas que Odio de Ti</span>
                 <button class="btn-cerrar" onclick="cerrarVentana('ventana2')">✕</button>
             </div>
             <div class="contenido-pelicula">
-                <img src="img/pelicula2.jpg" alt="Amor Bajo las Estrellas" class="img-pelicula">
-                <h3>Amor Bajo las Estrellas</h3>
-                <p><strong>Duración:</strong> 1h 50min</p>
-                <p><strong>Clasificación:</strong> PG</p>
-                <p>Una romántica historia de dos almas que se encuentran bajo un cielo estrellado.</p>
+                <img src="img/pelicula2.jpg" alt="10 Cosas que Odio de Ti" class="img-pelicula">
+                <h3>10 Cosas que Odio de Ti</h3>
+                <p><strong>Duración:</strong> 1h 37min</p>
+                <p><strong>Clasificación:</strong> Adolescente</p>
+                <p>
+                    Comedia Romántica juvenil de 1999 ambientada en una preparatoria, centrada en amores, enredos y
+                    personalidades opuestas.
+                </p>
                 <div class="horarios">
                     <p><strong>Horarios disponibles:</strong></p>
                     <select id="horario2" class="select-horario">
@@ -61,22 +70,25 @@
                         <option>9:30 PM</option>
                     </select>
                 </div>
-                <button class="btn-comprar" onclick="abrirCompra('Amor Bajo las Estrellas')">Comprar Entrada</button>
+                <button class="btn-comprar" onclick="abrirCompra('10 Cosas que Odio de Ti')">Comprar Entrada</button>
             </div>
         </div>
 
         <!-- Película 3 -->
         <div class="ventana-pelicula" id="ventana3">
             <div class="barra-titulo" id="titulo3">
-                <span>🎬 El Misterio del Bosque</span>
+                <span>Nacho Libre</span>
                 <button class="btn-cerrar" onclick="cerrarVentana('ventana3')">✕</button>
             </div>
             <div class="contenido-pelicula">
-                <img src="img/pelicula3.jpg" alt="El Misterio del Bosque" class="img-pelicula">
-                <h3>El Misterio del Bosque</h3>
-                <p><strong>Duración:</strong> 2h 5min</p>
-                <p><strong>Clasificación:</strong> R</p>
-                <p>Un thriller psicológico que te mantendrá en el borde del asiento.</p>
+                <img src="https://m.media-amazon.com/images/S/pv-target-images/f2e7bba52fba21f76de0ca002e5008085fb9350fa6e01356aa8b33b22777845c.jpg" alt="Nacho Libre" class="img-pelicula">
+                <h3>Nacho Libre</h3>
+                <p><strong>Duración:</strong> 1h 32min</p>
+                <p><strong>Clasificación:</strong> PG</p>
+                <p>
+                    Nacho Libre es una comedia de 2006 sobre un monje que se convierte en luchador para ganar dinero y
+                    ayudar a los huérfanos.
+                </p>
                 <div class="horarios">
                     <p><strong>Horarios disponibles:</strong></p>
                     <select id="horario3" class="select-horario">
@@ -85,7 +97,7 @@
                         <option>9:00 PM</option>
                     </select>
                 </div>
-                <button class="btn-comprar" onclick="abrirCompra('El Misterio del Bosque')">Comprar Entrada</button>
+                <button class="btn-comprar" onclick="abrirCompra('Nacho Libre')">Comprar Entrada</button>
             </div>
         </div>
     </div>
@@ -114,17 +126,19 @@
                     <label>Precio por Entrada: <strong>$3.00</strong></label>
                 </div>
                 <div class="resumen-compra">
-                    <p>Total a Pagar: <span id="total-precio" class="precio-total">$3.00</span></p>
+                    <span id="total-precio" class="precio-total">$3.00</span>
                 </div>
+                <!-- botón que llama a la función confirmarCompra para procesar la compra y mostrar el resumen -->
                 <button class="btn-confirmar" onclick="confirmarCompra()">Confirmar Compra</button>
             </div>
         </div>
     </div>
 
     <!-- Botones de Control -->
+    <!-- barra inferior con botones para mostrar compras, limpiar datos y abrir todas las ventanas si alguna está cerrada -->
     <div class="barra-inferior">
         <button class="btn-control" onclick="mostrarCompras()">📋 Ver Compras</button>
-        <button class="btn-control" onclick="limpiarDatos()">🔄 Limpiar Datos</button>
+        <button class="btn-control" onclick="limpiarDatos()">🔄 Restaurar Datos</button>
         <button id="btn-abrir-todas" class="btn-control oculto" onclick="abrirTodas()">✅ Abrir Todas las Ventanas</button>
     </div>
 
