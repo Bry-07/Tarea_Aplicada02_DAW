@@ -1,50 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Orden Lexicográfico</title>
+    <title>Cine - Compra de Entradas</title>
     <link rel="stylesheet" href="css/estilo.css">
 </head>
+
 <body>
-    <script>alert("Tarea aplicada– DAW");</script>
+    <script>
+        alert("Tarea aplicada – DAW");
+    </script>
 
-    <h1>Orden Lexicográfico</h1>
+    <h1>🎬 Cine - Compra de Entradas</h1>
 
-    <div class="tarjeta">
-
-        <h3>Ingrese 8 números enteros</h3>
-
-        <div class="grupo">
-            <input type="text" id="n1" placeholder="Número 1">
-            <input type="text" id="n2" placeholder="Número 2">
+    <div class="contenedor-principal">
+        <!-- Película 1 -->
+        <div class="ventana-pelicula" id="ventana1">
+            <div class="barra-titulo" id="titulo1">
+                <span>🎭 La Aventura Espacial</span>
+                <button class="btn-cerrar" onclick="cerrarVentana('ventana1')">✕</button>
+            </div>
+            <div class="contenido-pelicula">
+                <img src="img/pelicula1.jpg" alt="La Aventura Espacial" class="img-pelicula">
+                <h3>La Aventura Espacial</h3>
+                <p><strong>Duración:</strong> 2h 15min</p>
+                <p><strong>Clasificación:</strong> PG-13</p>
+                <p>Una épica aventura intergaláctica llena de acción y misterio.</p>
+                <div class="horarios">
+                    <p><strong>Horarios disponibles:</strong></p>
+                    <select id="horario1" class="select-horario">
+                        <option>2:00 PM</option>
+                        <option>5:30 PM</option>
+                        <option>8:00 PM</option>
+                        <option>10:30 PM</option>
+                    </select>
+                </div>
+                <button class="btn-comprar" onclick="abrirCompra('La Aventura Espacial')">Comprar Entrada</button>
+            </div>
         </div>
 
-        <div class="grupo">
-            <input type="text" id="n3" placeholder="Número 3">
-            <input type="text" id="n4" placeholder="Número 4">
+        <!-- Película 2 -->
+        <div class="ventana-pelicula" id="ventana2">
+            <div class="barra-titulo" id="titulo2">
+                <span>💕 Amor Bajo las Estrellas</span>
+                <button class="btn-cerrar" onclick="cerrarVentana('ventana2')">✕</button>
+            </div>
+            <div class="contenido-pelicula">
+                <img src="img/pelicula2.jpg" alt="Amor Bajo las Estrellas" class="img-pelicula">
+                <h3>Amor Bajo las Estrellas</h3>
+                <p><strong>Duración:</strong> 1h 50min</p>
+                <p><strong>Clasificación:</strong> PG</p>
+                <p>Una romántica historia de dos almas que se encuentran bajo un cielo estrellado.</p>
+                <div class="horarios">
+                    <p><strong>Horarios disponibles:</strong></p>
+                    <select id="horario2" class="select-horario">
+                        <option>1:00 PM</option>
+                        <option>4:00 PM</option>
+                        <option>7:00 PM</option>
+                        <option>9:30 PM</option>
+                    </select>
+                </div>
+                <button class="btn-comprar" onclick="abrirCompra('Amor Bajo las Estrellas')">Comprar Entrada</button>
+            </div>
         </div>
 
-        <div class="grupo">
-            <input type="text" id="n5" placeholder="Número 5">
-            <input type="text" id="n6" placeholder="Número 6">
+        <!-- Película 3 -->
+        <div class="ventana-pelicula" id="ventana3">
+            <div class="barra-titulo" id="titulo3">
+                <span>🎬 El Misterio del Bosque</span>
+                <button class="btn-cerrar" onclick="cerrarVentana('ventana3')">✕</button>
+            </div>
+            <div class="contenido-pelicula">
+                <img src="img/pelicula3.jpg" alt="El Misterio del Bosque" class="img-pelicula">
+                <h3>El Misterio del Bosque</h3>
+                <p><strong>Duración:</strong> 2h 5min</p>
+                <p><strong>Clasificación:</strong> R</p>
+                <p>Un thriller psicológico que te mantendrá en el borde del asiento.</p>
+                <div class="horarios">
+                    <p><strong>Horarios disponibles:</strong></p>
+                    <select id="horario3" class="select-horario">
+                        <option>3:00 PM</option>
+                        <option>6:00 PM</option>
+                        <option>9:00 PM</option>
+                    </select>
+                </div>
+                <button class="btn-comprar" onclick="abrirCompra('El Misterio del Bosque')">Comprar Entrada</button>
+            </div>
         </div>
-
-        <div class="grupo">
-            <input type="text" id="n7" placeholder="Número 7">
-            <input type="text" id="n8" placeholder="Número 8">
-        </div>
-
-        <button onclick="ordenar()">Ordenar</button>
-
-        <hr>
-
-        <div class="resultado" id="resultado">
-            El resultado se mostrará aquí
-        </div>
-
     </div>
 
-<script src="js/operacion.js"></script>
+    <!-- Modal de Compra -->
+    <div id="modal-compra" class="modal-compra oculto">
+        <div class="contenedor-modal">
+            <div class="encabezado-modal">
+                <h2>Compra de Entradas</h2>
+                <button class="btn-cerrar" onclick="cerrarModal()">✕</button>
+            </div>
+            <div class="cuerpo-modal">
+                <div class="grupo">
+                    <label for="nombre-pelicula">Película:</label>
+                    <input type="text" id="nombre-pelicula" readonly class="input-compra">
+                </div>
+                <div class="grupo">
+                    <label for="horario-compra">Horario:</label>
+                    <input type="text" id="horario-compra" readonly class="input-compra">
+                </div>
+                <div class="grupo">
+                    <label for="cantidad-entradas">Cantidad de Entradas:</label>
+                    <input type="number" id="cantidad-entradas" min="1" max="10" value="1" class="input-compra">
+                </div>
+                <div class="grupo">
+                    <label>Precio por Entrada: <strong>$3.00</strong></label>
+                </div>
+                <div class="resumen-compra">
+                    <p>Total a Pagar: <span id="total-precio" class="precio-total">$3.00</span></p>
+                </div>
+                <button class="btn-confirmar" onclick="confirmarCompra()">Confirmar Compra</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Botones de Control -->
+    <div class="barra-inferior">
+        <button class="btn-control" onclick="mostrarCompras()">📋 Ver Compras</button>
+        <button class="btn-control" onclick="limpiarDatos()">🔄 Limpiar Datos</button>
+        <button id="btn-abrir-todas" class="btn-control oculto" onclick="abrirTodas()">✅ Abrir Todas las Ventanas</button>
+    </div>
+
+    <!-- Modal de Compras Realizadas -->
+    <div id="modal-compras" class="modal-compra oculto">
+        <div class="contenedor-modal modal-compras">
+            <div class="encabezado-modal">
+                <h2>Compras Realizadas</h2>
+                <button class="btn-cerrar" onclick="cerrarModalCompras()">✕</button>
+            </div>
+            <div class="cuerpo-modal">
+                <div id="lista-compras" class="lista-compras">
+                    <!-- Las compras se insertarán aquí -->
+                </div>
+                <button class="btn-confirmar" onclick="cerrarModalCompras()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/operacion.js"></script>
 </body>
+
 </html>

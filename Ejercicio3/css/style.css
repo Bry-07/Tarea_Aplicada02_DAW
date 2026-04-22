@@ -83,6 +83,41 @@ button:hover
     background-color: #0056b3;
 }
 
+/* -------------------------------------------------------
+   NUEVO: Estilo para el botón de restaurar.
+   Se diferencia visualmente del botón Convertir usando
+   un color naranja/rojizo para indicar acción de limpieza.
+   margin-top pequeño para separarlo del botón principal.
+------------------------------------------------------- */
+.btn-restaurar
+{
+    background-color: #e67e22;
+    margin-top: 8px;
+}
+
+.btn-restaurar:hover
+{
+    background-color: #ca6f1e;
+}
+
+/* -------------------------------------------------------
+   NUEVO: Estilo para el mensaje de error de validación.
+   Aparece debajo del input cuando la regex detecta un
+   valor inválido. Color rojo oscuro sobre fondo claro
+   para que sea fácil de leer sobre la tarjeta verde.
+------------------------------------------------------- */
+.error
+{
+    display: block;        /* ocupa su propia línea */
+    color: #7b0000;        /* rojo oscuro legible sobre fondo verde */
+    background-color: #ffd6d6; /* fondo rosado suave para destacarlo */
+    font-size: 13px;
+    margin-top: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
 .resultado
 {
     background-color: #d4edda;

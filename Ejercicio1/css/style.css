@@ -55,6 +55,7 @@ input, select
     border: none;
     border-radius: 6px;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 input:focus, select:focus
@@ -82,12 +83,31 @@ button:hover
     background-color: #0056b3;
 }
 
+/* Estilo base del div de resultado */
 .resultado
 {
-    background-color: #d4edda;
-    color: #155724;
     padding: 15px;
     border-radius: 6px;
     margin-top: 20px;
     font-weight: bold;
+
+    /* Color neutro por defecto (antes de presionar Verificar) */
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+/* CLASE "exito": se aplica via JS cuando la verificación es exitosa 
+   Fondo verde claro con texto verde oscuro, igual que el diseño original.   */
+.resultado.exito
+{
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* CLASE "error": se aplica via JS cuando alguna validación falla 
+   Fondo rojo claro con texto rojo oscuro para indicar claramente el problema. */
+.resultado.error
+{
+    background-color: #f8d7da;
+    color: #721c24;
 }

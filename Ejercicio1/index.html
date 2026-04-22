@@ -17,12 +17,14 @@
 
 <div class="grupo">
 <label>Nombre</label>
-<input type="text" id="nombre">
+<input type="text" id="nombre" placeholder="Ej: María López">
 </div>
 
 <div class="grupo">
 <label>Edad</label>
-<input type="number" id="edad">
+<!-- Se cambió a type="text" para que la validación con regex tenga control total.
+     Con type="number" el navegador filtra antes de que el regex pueda actuar. -->
+<input type="text" id="edad" placeholder="Ej: 55">
 </div>
 
 <div class="grupo">
